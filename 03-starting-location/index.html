@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>API Workshop</title>
+    <link rel="stylesheet" href="https://openlayers.org/en/v3.19.1/css/ol.css" type="text/css">
+    <script src="https://openlayers.org/en/v3.19.1/build/ol.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+      crossorigin="anonymous"></script>
+    <script src="./util.js"></script>
+    <link rel="stylesheet" href="./app.css" type="text/css">
+  </head>
+  <body>
+    <div id="map" class="map"></div>
+
+    <div id="sidebar" class="sidebar">
+      <div id="search-bar-container" class="directions-mode">
+        <span id="search-from" class="search-bar">
+          <input id="search-from-input" class="search-input" type="text"></input>
+          <button id="clear-from-search" class="search-button">X</button>
+        </span>
+      </div>
+      <ul id="results-list" class="results-list hidden"></ul>
+    </div>
+
+
+  	<script src="./app.js"></script>
+  </body>
+</html>
