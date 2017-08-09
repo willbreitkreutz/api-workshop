@@ -34,6 +34,20 @@ var app = {
     from: {},
     to: {}
   },
+  routeLayer: new ol.layer.Vector({
+    map: map,
+    opacity: 0.6,
+    visible: true,
+    style: new ol.style.Style({
+      stroke: new ol.style.Stroke({
+        color: '#2196F3',
+        width: 5
+      })
+    }),
+    source: new ol.source.Vector({
+      features: []
+    })
+  }),
 
   typeAhead: function(e){
     var el = e.target;
@@ -87,6 +101,9 @@ var app = {
     var elId = '#search-' + app.activeSearch + '-input';
     $(elId).val(feature.properties.label);
     app.clearList();
+    if(app.selection.from.hasOwnProperty('geometry') && app.selection.to.hasOwnProperty('geometry')){
+      app.queryMobility(app.displayRoute);
+    }
   },
 
   clearList: function(e){
@@ -98,6 +115,61 @@ var app = {
     var elId = '#search-' + e.data.input + '-input';
     $(elId).val('').trigger('keyup');
     app.selection[e.data.input] = {};
+  },
+
+  queryMobility: function(callback){
+    var json = {
+      locations:[
+        {
+          lat:app.selection.from.geometry.coordinates[1],
+          lon:app.selection.from.geometry.coordinates[0],
+          type:'break'
+        },
+        {
+          lat:app.selection.to.geometry.coordinates[1],
+          lon:app.selection.to.geometry.coordinates[0],
+          type:'break'
+        }
+      ],
+      costing:'auto',
+      directions_options:{
+        units:'miles'
+      }
+    }
+    $.ajax({
+      url: 'https://valhalla.mapzen.com/route?json=' + JSON.stringify(json) + '&api_key=' + app.mapzenKey,
+      success: function(data, status, req){
+        var coords = polyline.decode(data.trip.legs[0].shape);
+        callback(null, coords);
+      },
+      error: function(req, status, err){
+        callback(err);
+      }
+    })
+  },
+
+  displayRoute: function(err, coords){
+    console.log('should be working')
+    if(err){
+      console.log(err);
+    }else{
+      var route = {
+        type: 'Feature',
+        geometry: {
+          type: 'LineString',
+          coordinates: coords
+        }
+      }
+
+      app.routeLayer.setSource( new ol.source.Vector({
+        features: (new ol.format.GeoJSON({featureProjection: mapProjection})).readFeatures(route)
+      }))
+
+      map.getView().fit(
+        app.routeLayer.getSource().getExtent(),
+        map.getSize()
+      )      
+    }
   }
 
 }

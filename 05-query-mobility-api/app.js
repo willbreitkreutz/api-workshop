@@ -87,6 +87,11 @@ var app = {
     var elId = '#search-' + app.activeSearch + '-input';
     $(elId).val(feature.properties.label);
     app.clearList();
+    if(app.selection.from.hasOwnProperty('geometry') && app.selection.to.hasOwnProperty('geometry')){
+      app.queryMobility(function(err, data){
+        console.log(err, data)
+      });
+    }
   },
 
   clearList: function(e){
@@ -98,6 +103,36 @@ var app = {
     var elId = '#search-' + e.data.input + '-input';
     $(elId).val('').trigger('keyup');
     app.selection[e.data.input] = {};
+  },
+
+  queryMobility: function(callback){
+    var json = {
+      locations:[
+        {
+          lat:app.selection.from.geometry.coordinates[1],
+          lon:app.selection.from.geometry.coordinates[0],
+          type:'break'
+        },
+        {
+          lat:app.selection.to.geometry.coordinates[1],
+          lon:app.selection.to.geometry.coordinates[0],
+          type:'break'
+        }
+      ],
+      costing:'auto',
+      directions_options:{
+        units:'miles'
+      }
+    }
+    $.ajax({
+      url: 'https://valhalla.mapzen.com/route?json=' + JSON.stringify(json) + '&api_key=' + app.mapzenKey,
+      success: function(data, status, req){
+        callback(null, data);
+      },
+      error: function(req, status, err){
+        callback(err);
+      }
+    })
   }
 
 }
