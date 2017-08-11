@@ -149,7 +149,6 @@ var app = {
   },
 
   displayRoute: function(err, coords){
-    console.log('should be working')
     if(err){
       console.log(err);
     }else{

@@ -186,11 +186,15 @@ var app = {
         var li = $('<li class="directions-list-item"></li>');
         var instructionContainer = $('<div class="directions-list-instruction-container"></div>');
         var instruction = $('<div class="directions-list-item-direction">' + man.instruction + '</div>');
+        var iconContainer = $('<div class="directions-list-icon-container"></div>')
+        var icon = app.getIconEl('icon-maneuver-' + leftPad(man.type, 2, '0'));
+        iconContainer.append(icon);
         instructionContainer.append(instruction);
         if(man.hasOwnProperty('verbal_post_transition_instruction')){
           var then = $('<div class="directions-then">Then ' + man.verbal_post_transition_instruction + '</div>')
           instructionContainer.append(then)
         }
+        li.append(iconContainer);
         li.append(instructionContainer);
         return li;
       })
@@ -201,6 +205,19 @@ var app = {
       directionsList.addClass('hidden');
       sidebar.removeClass('sidebar-expanded');
     }
+  },
+
+  getIconEl: function(id){
+    var svgContainerEl = document.getElementById('svg');
+    var svg = svgContainerEl.querySelectorAll('symbol');
+    var svgEl = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svgEl.setAttributeNS('http://www.w3.org/2000/xmlns/', 'xmlns', 'http://www.w3.org/1999/svg');
+    svgEl.setAttributeNS('http://www.w3.org/2000/xmlns/', 'xmlns:xlink', 'http://www.w3.org/1999/xlink');
+    var useEl = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+    useEl.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#' + id);
+    svgEl.appendChild(useEl);
+    svgEl.classList.add('directions-list-icon');
+    return svgEl;
   }
 
 }

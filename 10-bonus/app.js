@@ -30,6 +30,7 @@ var app = {
   mapzenKey: 'mapzen-CpAANqF', 
   activeSearch: 'from',
   options: [],
+  longpress: false,
   selection: {
     from: {},
     to: {}
@@ -156,6 +157,8 @@ var app = {
     if(err){
       console.log(err);
     }else{
+      app.coords = coords;
+
       var route = {
         type: 'Feature',
         geometry: {
@@ -182,16 +185,28 @@ var app = {
     var directionsList = $('#directions-list');
     directionsList.empty();
     if(app.trip && app.trip.legs){
+      map.addOverlay(app.detailOverlay);
+      app.renderOverlay(app.coords[0], 'icon-maneuver-01');
       var directions = app.trip.legs[0].maneuvers.map(function(man){
         var li = $('<li class="directions-list-item"></li>');
         var instructionContainer = $('<div class="directions-list-instruction-container"></div>');
         var instruction = $('<div class="directions-list-item-direction">' + man.instruction + '</div>');
+        var iconContainer = $('<div class="directions-list-icon-container"></div>')
+        var icon = app.getIconEl('icon-maneuver-' + leftPad(man.type, 2, '0'));
+        iconContainer.append(icon);
         instructionContainer.append(instruction);
         if(man.hasOwnProperty('verbal_post_transition_instruction')){
           var then = $('<div class="directions-then">Then ' + man.verbal_post_transition_instruction + '</div>')
           instructionContainer.append(then)
         }
+        li.append(iconContainer);
         li.append(instructionContainer);
+        li.on('mouseover', function(){
+          app.renderOverlay(app.coords[man.begin_shape_index], 'icon-maneuver-' + leftPad(man.type, 2, '0'));
+        })
+        li.on('click', function(){
+          app.zoomTo(app.coords[man.begin_shape_index]);
+        })
         return li;
       })
       directionsList.append(directions);
@@ -201,6 +216,36 @@ var app = {
       directionsList.addClass('hidden');
       sidebar.removeClass('sidebar-expanded');
     }
+  },
+
+  getIconEl: function(id){
+    var svgContainerEl = document.getElementById('svg');
+    var svg = svgContainerEl.querySelectorAll('symbol');
+    var svgEl = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svgEl.setAttributeNS('http://www.w3.org/2000/xmlns/', 'xmlns', 'http://www.w3.org/1999/svg');
+    svgEl.setAttributeNS('http://www.w3.org/2000/xmlns/', 'xmlns:xlink', 'http://www.w3.org/1999/xlink');
+    var useEl = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+    useEl.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#' + id);
+    svgEl.appendChild(useEl);
+    svgEl.classList.add('directions-list-icon');
+    return svgEl;
+  },
+
+  detailOverlay: new ol.Overlay({
+    positioning: 'center-center',
+    element: document.getElementById('marker'),
+    stopEvent: false
+  }),
+
+  renderOverlay: function(coord, maneuverType){
+    $('#marker').empty().append(app.getIconEl(maneuverType));
+    app.detailOverlay.setPosition(ol.proj.fromLonLat(coord));
+  },
+
+  zoomTo: function(coord){
+    var view = map.getView();
+    view.setCenter(ol.proj.fromLonLat(coord));
+    view.setResolution(50);
   }
 
 }
