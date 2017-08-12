@@ -1,0 +1,13 @@
+.jumbotron {
+  background-image:url(../img/bg.jpg);
+  background-position: center;
+  color:white;
+}
+
+.jumbotron-title {
+  color: white !important;
+}
+
+.heading-link {
+  font-size: 25px;
+}

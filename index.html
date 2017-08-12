@@ -3,55 +3,147 @@
   <head>
     <title>API Workshop</title>
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="./bootstrap/css/api-workshop.css">
   </head>
   <body>
     <div class="container">
       <div class="jumbotron">
-        <h1>API Workshop</h1>
+        <h1 class="jumbotron-title">API Workshop</h1>
         <p>Building on the work of giants</p>
       </div>
-      <h4>Check out the steps</h4>
+      <h4>Lessons:</h4>
+      <p>Each lesson is available in the source repository for the workshop via the link below, but is also available in your repository if you forked the workshop.  The links to running solutions reference the solution inside the repo where this page is hosted, either in the source or in your forked version, this way the link to the running solution under "Your Workspace" will reference the files that you will be updating throughout the workshop</p>
       <div class="list-group">
-        <a href="./00-workspace/" class="list-group-item">
-          <h4 class="list-group-item-heading">00 Your Workspace</h4>
+
+        <div class="list-group-item">
+          <div class="list-group-item-heading">
+            <a class="pull-right" href="./00-workspace/">
+              <div class="heading-link">View Running Solution</div>
+            </a>
+            <a href="#">
+              <div class="heading-link">Your Workspace</div>
+            </a>
+          </div>
           <p class="list-group-item-text">All of your changes can be seen here</p>
-        </a>
-        <a href="./01-start-here" class="list-group-item">
-          <h4 class="list-group-item-heading">01 Start Here</h4>
+        </div>
+
+        <div class="list-group-item">
+          <div class="list-group-item-heading">
+            <a class="pull-right" href="./01-start-here/">
+              <div class="heading-link">View Running Solution</div>
+            </a>
+            <a href="https://github.com/willbreitkreutz/api-workshop/blob/master/01-Start-here.md">
+              <div class="heading-link">01 Start Here</div>
+            </a>
+          </div>
           <p class="list-group-item-text">Basic OpenLayers Map</p>
-        </a>
-        <a href="./03-starting-location" class="list-group-item">
-          <h4 class="list-group-item-heading">03 Search for Starting Location</h4>
+        </div>
+
+        <div class="list-group-item">
+          <div class="list-group-item-heading">
+            <a href="https://github.com/willbreitkreutz/api-workshop/blob/master/02-Explore-an-api.md">
+              <div class="heading-link">02 Explore an API</div>
+            </a>
+          </div>
+          <p class="list-group-item-text">Introduction into web APIs and the Mapzen API in particular</p>
+        </div>
+
+        <div class="list-group-item">
+          <div class="list-group-item-heading">
+            <a class="pull-right" href="./03-starting-location">
+              <div class="heading-link">View Running Solution</div>
+            </a>
+            <a href="https://github.com/willbreitkreutz/api-workshop/blob/master/03-Starting-location.md">
+              <div class="heading-link">03 Search for Starting Location</div>
+            </a>
+          </div>
           <p class="list-group-item-text">Map with a search component for the starting location</p>
-        </a>
-        <a href="./04-destination-location" class="list-group-item">
-          <h4 class="list-group-item-heading">04 Search for a Destination</h4>
+        </div>
+
+        <div class="list-group-item">
+          <div class="list-group-item-heading">
+            <a class="pull-right" href="./04-destination-location">
+              <div class="heading-link">View Running Solution</div>
+            </a>
+            <a href="https://github.com/willbreitkreutz/api-workshop/blob/master/04-Destination-location.md">
+              <div class="heading-link">04 Search for a Destination</div>
+            </a>
+          </div>
           <p class="list-group-item-text">Map with a search component for starting and desitnation locations</p>
-        </a>
-        <a href="./05-query-mobility-api" class="list-group-item">
-          <h4 class="list-group-item-heading">05 Query the Mobility API</h4>
+        </div>
+
+        <div class="list-group-item">
+          <div class="list-group-item-heading">
+            <a class="pull-right" href="./05-query-mobility-api">
+              <div class="heading-link">View Running Solution</div>
+            </a>
+            <a href="https://github.com/willbreitkreutz/api-workshop/blob/master/05-Query-mobility-api.md">
+              <div class="heading-link">05 Query the Mobility API</div>
+            </a>
+          </div>
           <p class="list-group-item-text">Use the start and destinations to get a route from the API</p>
-        </a>
-        <a href="./06-display-route" class="list-group-item">
-          <h4 class="list-group-item-heading">06 Display the Route on the Map</h4>
+        </div>
+
+        <div class="list-group-item">
+          <div class="list-group-item-heading">
+            <a class="pull-right" href="./06-display-route">
+              <div class="heading-link">View Running Solution</div>
+            </a>
+            <a href="https://github.com/willbreitkreutz/api-workshop/blob/master/06-Display-route.md">
+              <div class="heading-link">06 Display the Route on the Map</div>
+            </a>
+          </div>
           <p class="list-group-item-text">Decode the route and turn it into a layer on the map</p>
-        </a>
-        <a href="./07-display-turn-by-turn" class="list-group-item">
-          <h4 class="list-group-item-heading">07 Display the Turn-by-turn Directions</h4>
+        </div>
+
+        <div class="list-group-item">
+          <div class="list-group-item-heading">
+            <a class="pull-right" href="./07-display-turn-by-turn">
+              <div class="heading-link">View Running Solution</div>
+            </a>
+            <a href="https://github.com/willbreitkreutz/api-workshop/blob/master/07-Display-turn-by-turn.md">
+              <div class="heading-link">07 Display the Turn-by-turn Directions</div>
+            </a>
+          </div>
           <p class="list-group-item-text">Give the user a list of directions along with the map</p>
-        </a>
-        <a href="./08-add-icons" class="list-group-item">
-          <h4 class="list-group-item-heading">08 Add Turn-by-turn Icons</h4>
+        </div>
+
+        <div class="list-group-item">
+          <div class="list-group-item-heading">
+            <a class="pull-right" href="./08-add-icons">
+              <div class="heading-link">View Running Solution</div>
+            </a>
+            <a href="https://github.com/willbreitkreutz/api-workshop/blob/master/08-Add-icons.md">
+              <div class="heading-link">08 Add Turn-by-turn Icons</div>
+            </a>
+          </div>
           <p class="list-group-item-text">Add icons based on the maneuver type to the directions list</p>
-        </a>
-        <a href="./09-add-interactions" class="list-group-item">
-          <h4 class="list-group-item-heading">09 Add Maneuver List Interactions</h4>
+        </div>
+
+        <div class="list-group-item">
+          <div class="list-group-item-heading">
+            <a class="pull-right" href="./09-add-interactions">
+              <div class="heading-link">View Running Solution</div>
+            </a>
+            <a href="https://github.com/willbreitkreutz/api-workshop/blob/master/09-Add-interactions.md">
+              <div class="heading-link">09 Add Maneuver List Interactions</div>
+            </a>
+          </div>
           <p class="list-group-item-text">Add changes to the map when a user hovers over or clicks a maneuver in the list</p>
-        </a>
-        <a href="./10-bonus" class="list-group-item">
-          <h4 class="list-group-item-heading">10 Bonus, Add Reverse Geocoding</h4>
-          <p class="list-group-item-text">Allow the user to reverse geocode locations instead of just searching for them</p>
-        </a>
+        </div>
+
+        <div class="list-group-item">
+          <div class="list-group-item-heading">
+            <a class="pull-right" href="./10-bonus">
+              <div class="heading-link">View Running Solution</div>
+            </a>
+            <a href="https://github.com/willbreitkreutz/api-workshop/blob/master/10-Bonus.md">
+              <div class="heading-link">10 Bonus, Add Reverse Geocoding and Trip Summary</div>
+            </a>
+          </div>
+          <p class="list-group-item-text">Allow the user to reverse geocode locations instead of just searching for them and display a trip summary with the directions</p>
+        </div>
+        
       </div>
     </div>
   </body>
