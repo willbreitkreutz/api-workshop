@@ -49,3 +49,27 @@ function leftPad(str, len, ch){
     return pad + str;
 
   }
+
+  function formatDuration (seconds) {
+    function getDays(seconds){
+      return Math.floor(days = seconds / 60 / 60 / 24);
+    }
+    function getHours(seconds){
+      return Math.floor(seconds / 60 / 60);
+    }
+    function getMinutes(seconds){
+      return Math.floor(seconds / 60);
+    }
+    var days = getDays(seconds);
+    var hours = getHours(seconds);
+    var minutes = getMinutes(seconds);
+    var formattedDuration = '';
+    if(days){
+      formattedDuration = days + ' days, ' + hours % days + ' hours';
+    }else if(hours){
+      formattedDuration = hours + ' hours, ' + minutes % hours + ' minutes';
+    }else if(minutes){
+      formattedDuration = minutes + ' min';
+    }
+    return formattedDuration;
+  }

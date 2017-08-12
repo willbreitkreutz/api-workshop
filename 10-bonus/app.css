@@ -96,6 +96,16 @@
   color: #fff;
 }
 
+.summary-info {
+  color: #1E88E5;
+  font-weight: bold;
+  padding: 5px;
+  line-height: 25px;
+  font-size: 14px;
+  height: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .results-list {
   list-style: none;
   margin: 0;
@@ -120,7 +130,7 @@
   padding: 0;
   position: absolute;
   overflow-y: auto;
-  top: 85px;
+  top: 89px;
   bottom: 5px;
   min-width: 300px;
 }
@@ -172,4 +182,8 @@
 .styled-scrollbar::-webkit-scrollbar-thumb:horizontal{
     background-color: rgba(0,0,0,.2);
     -webkit-border-radius: 6px;
+}
+
+.directions-list {
+  top: 114px;
 }

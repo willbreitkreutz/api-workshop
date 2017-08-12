@@ -113,6 +113,7 @@ var app = {
     app.renderResultsList();
     app.renderDirectionsList();
     app.routeLayer.setSource(null);
+    map.removeOverlay(app.detailOverlay);
   },
 
   clearSearch: function(e){
@@ -183,6 +184,10 @@ var app = {
   renderDirectionsList: function(err){
     var sidebar = $('#sidebar');
     var directionsList = $('#directions-list');
+
+    var summarySpan = $('#summary');
+    summarySpan.empty();
+
     directionsList.empty();
     if(app.trip && app.trip.legs){
       map.addOverlay(app.detailOverlay);
@@ -211,9 +216,16 @@ var app = {
       })
       directionsList.append(directions);
       directionsList.removeClass('hidden');
+
+      var distance = app.trip.summary.length + ' miles';
+      var time = formatDuration(app.trip.summary.time);
+      summarySpan.text(distance + ' - ' + time);
+      summarySpan.removeClass('hidden');
+
       sidebar.addClass('sidebar-expanded');
     }else{
       directionsList.addClass('hidden');
+      summarySpan.addClass('hidden');
       sidebar.removeClass('sidebar-expanded');
     }
   },
@@ -246,7 +258,19 @@ var app = {
     var view = map.getView();
     view.setCenter(ol.proj.fromLonLat(coord));
     view.setResolution(50);
-  }
+  },
+
+  queryReverse: throttle(function(coords, callback){
+    $.ajax({
+      url: 'https://search.mapzen.com/v1/reverse?point.lat=' + coords[1] + '&point.lon=' + coords[0] + '&api_key=' + app.mapzenKey, 
+      success: function(data, status, req){
+        callback(null, data);
+      },
+      error: function(req, status, err){
+        callback(err)
+      }
+    })
+  }, 100)
 
 }
 
@@ -259,3 +283,28 @@ $('#search-from-input').on('focus', function(){app.activeSearch = 'from'});
 $('#search-to-input').on('keyup', {input:'to'}, app.typeAhead);
 $('#search-to-input').on('focus', function(){app.activeSearch = 'to'});
 $('#clear-to-search').on('click', {input:'to'}, app.clearSearch);
+
+$('#map').on('mousedown', function(){
+  app.longpress = false;
+  pressTimer = window.setTimeout(function(){
+    app.longpress = true;
+  },300);
+});
+
+$('#map').on('mouseup', function(){
+  clearTimeout(pressTimer);
+});
+
+map.on('singleclick', function(e){
+  if(app.longpress){
+    var coords = e.coordinate;
+    var geoCoords = ol.proj.toLonLat(coords);
+    $('#search-' + app.activeSearch + '-input').val(geoCoords.toString());
+    app.queryReverse(geoCoords, function(err, data){
+      if(err) return console.log(err);
+      if(data.features) app.options = data.features;
+      app.renderResultsList();
+    });
+  }
+  app.longpress = false;
+});

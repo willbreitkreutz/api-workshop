@@ -93,3 +93,11 @@ Add a click handler on each of our maneuver list items to call `zoomTo` with tha
     app.zoomTo(app.coords[man.begin_shape_index]);
   })
 ```
+
+### Clean Up
+
+The last thing we need to do with our icon overlays is to remove them from the map when the user clears a route off of the map.  We can add the following line to our `clearList` function that gets called to clean up our route data and the turn-by-turn directions:
+
+``` javascript
+  map.removeOverlay(app.detailOverlay);
+```
