@@ -9,14 +9,14 @@ In `index.html` we need to add an input for the user to start typing in.
 After the `<div id="map" class="map"></div>` but before the `app.js` import we're going to start adding our user interface components.
 
 ``` html
-<div id="sidebar" class="sidebar">
-  <div id="search-bar-container" class="directions-mode">
-    <span id="search-from" class="search-bar">
-      <input id="search-from-input" class="search-input" type="text"></input>
-      <button id="clear-from-search" class="search-button">X</button>
-    </span>
+  <div id="sidebar" class="sidebar">
+    <div id="search-bar-container" class="directions-mode">
+      <span id="search-from" class="search-bar">
+        <input id="search-from-input" class="search-input" type="text"></input>
+        <button id="clear-from-search" class="search-button">X</button>
+      </span>
+    </div>
   </div>
-</div>
 ```
 
 We're going to add a sidebar that will take care of positioning our interface to the right side of the page and set our dimensions for the components.  Inside the sidebar we'll add a search-bar-container, all of the search bar stuff will go in here.
@@ -38,10 +38,10 @@ Let's add the app object to `app.js`:
 ``` javascript
 // SETUP APPLICATION LOGIC HERE
 
-var app = {
-  mapzenKey: 'mapzen-CpAANqF', // feel free to add your key if you want
-  activeSearch: 'from'
-}
+  var app = {
+    mapzenKey: 'mapzen-CpAANqF', // feel free to add your key if you want
+    activeSearch: 'from'
+  }
 
 ```
 
@@ -52,23 +52,23 @@ Next we'll add the function that will handle user input into the search bar.  We
 ``` javascript
 // SETUP APPLICATION LOGIC HERE
 
-var app = {
-  mapzenKey: 'mapzen-CpAANqF', 
-  activeSearch: 'from',
+  var app = {
+    mapzenKey: 'mapzen-CpAANqF', 
+    activeSearch: 'from',
 
-  typeAhead: function(e){
-    var el = e.target;
-    var val = el.value;
-    console.log(val);
+    typeAhead: function(e){
+      var el = e.target;
+      var val = el.value;
+      console.log(val);
+    }
   }
-}
 
 ```
 
 Then to wire up our input to the typeAhead function, we'll use a little JQuery event binding by adding the following line after the app object in the event binding section of `app.js`:
 
 ``` javascript
-$('#search-from-input').on('keyup', {input:'from'}, app.typeAhead);
+  $('#search-from-input').on('keyup', {input:'from'}, app.typeAhead);
 ```
 
 Now if we type into the input we should see our text echoed back to us in the console of the developer tools (F12 on Windows or option+command+I in Mac).
@@ -93,7 +93,7 @@ We can add a method to our app object to send the request to mapzen by adding an
   }, 150)
 ```
 
-[Side note on the throttle function call](add url)
+We add the throttle function to make sure that we don't send too many requests since if the network hiccups our responses can get out of sync with our requests and we start showing our users bad results.  See [here](https://mapzen.com/documentation/search/autocomplete/#user-experience-guidelines) for Mapzen's not on throttling for more info.
 
 In order to actually call the `queryAutocomplete` function, we should add a call inside the `typeAhead` function.  We can pass the text that the user is typing as well as a callback function to handle the results when they come back, in this case let's just log them to the console.
 
@@ -137,11 +137,11 @@ Now we have a nice place to put our results as we get them back from the API.
 We need to add a couple things to our app object to get the results to render in the list.  First we need an array to put the results into, so we'll add an options array to app as well as another method that will take our options and render them into the list:
 
 ``` javascript
-var app = {
-  mapzenKey: 'mapzen-CpAANqF', 
-  activeSearch: 'from',
-  options: [],
-  ...
+  var app = {
+    mapzenKey: 'mapzen-CpAANqF', 
+    activeSearch: 'from',
+    options: [],
+    ...
 ```
 
 ``` javascript
@@ -307,5 +307,5 @@ Lastly we can add the event listener that will fire `app.clearSearch` when the u
   $('#clear-from-search').on('click', {input:'from'}, app.clearSearch);
 ```
 
-Awesome!  We've got step one in the bag.  And that's actually almost half the app right there.  Let's move on to [lesson 4]() and wire up the destination search.
+Awesome!  We've got step one in the bag.  And that's actually almost half the app right there.  Let's move on to [lesson 4](/04-Destination-location.md) and wire up the destination search.
 

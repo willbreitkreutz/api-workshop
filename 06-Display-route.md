@@ -5,17 +5,17 @@ Let's take a closer look at the response we get from the Mobility API.
 Searching for a route between two locations gets us a JSON object that looks something like this:
 
 ``` javascript
-{
-  trip:{
-    language: "en-US",
-    legs: [{…}],
-    locations:[{…}, {…}],
-    status: 0,
-    status_message: "Found route between points",
-    summary: {max_lon: -71.050323, max_lat: 42.358276, time: 99772, length: 1832.019, min_lat: 38.449535, …},
-    units: "miles"
+  {
+    trip:{
+      language: "en-US",
+      legs: [{…}],
+      locations:[{…}, {…}],
+      status: 0,
+      status_message: "Found route between points",
+      summary: {max_lon: -71.050323, max_lat: 42.358276, time: 99772, length: 1832.019, min_lat: 38.449535, …},
+      units: "miles"
+    }
   }
-}
 ```
 
 According to the Mapzen docs: 
@@ -139,4 +139,4 @@ To do this let's add the `app.routeLayer` to the `app` object up toward the top 
 
 Ok, now if we test it out, we should be able to query a route using two locations and have it draw on the map!
 
-What about those turn-by-turn directions that they send us, let's add those so that the user can see all the turns they'll have to make to get from A to B. Time to go to [lesson 7]().
+What about those turn-by-turn directions that they send us, let's add those so that the user can see all the turns they'll have to make to get from A to B. Time to go to [lesson 7](/07-Display-turn-by-turn).

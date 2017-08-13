@@ -101,3 +101,5 @@ The last thing we need to do with our icon overlays is to remove them from the m
 ``` javascript
   map.removeOverlay(app.detailOverlay);
 ```
+
+If you're still with me and want to continue, there are a couple of bonus features we can add to make the app more user friendly in [lesson 10 - bonus](/10-Bonus.md).

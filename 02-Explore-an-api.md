@@ -20,4 +20,4 @@ If we break that down, the major steps look something like this:
 4. Draw the route on the map
 5. Give the user turn-by-turn directions from point a to point b
 
-That doesn't look too bad, if we take it one step at a time we'll get this wired up in no time.
+That doesn't look too bad, if we take it one step at a time we'll get this wired up in no time.  Time for [Lesson 3](/03-Starting-location.md)

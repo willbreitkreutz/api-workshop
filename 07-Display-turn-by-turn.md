@@ -169,4 +169,4 @@ Ugh, now the route stays on the map as well, let's clean that up by adding one m
   }
 ```
 
-Alright, we're getting close to an app with some functionality, we just need to pretty it up a little bit and add some more interaction.  In [lesson 8]() we'll add icons based on the maneuver type to the list then later we'll even add them to the map.
+Alright, we're getting close to an app with some functionality, we just need to pretty it up a little bit and add some more interaction.  In [lesson 8](/08-Add-icons.md) we'll add icons based on the maneuver type to the list then later we'll even add them to the map.

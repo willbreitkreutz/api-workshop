@@ -31,4 +31,4 @@ If we think back to when we set up the app object, we added the activeSearch key
 
 Ok, let's give that a try and see if we can set both starting and destination locations.
 
-Nice, if that works it's time to take those locations that the user selects and get a route between the two.  Let's move on to [lesson 5]().
+Nice, if that works it's time to take those locations that the user selects and get a route between the two.  Let's move on to [lesson 5](/05-Query-mobility-api.md).

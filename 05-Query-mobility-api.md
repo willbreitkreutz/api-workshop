@@ -13,19 +13,19 @@ Let's break that down a little bit.  In order to get a good route back we need t
 So far our json inputs object looks like this: (don't worry about where this goes in the code yet)
 
 ``` javascript
-{
-  locations: [
-    {
-      lat:...,
-      lon:...,
-      type: 'break'
-    },{
-      lat:...,
-      lon:...,
-      type: 'break'
-    }
-  ]
-}
+  {
+    locations: [
+      {
+        lat:...,
+        lon:...,
+        type: 'break'
+      },{
+        lat:...,
+        lon:...,
+        type: 'break'
+      }
+    ]
+  }
 ```
 
 The next bit of information that the API asks for is the costing model.  Mapzen Mobility offers an awesome array of options for routing, we can ask for route using automobile, bike, bus, pedestrian and other modes, if we had more time we could give those options to the user and let them pick the mode that works best for them, but for our workshop we're going to use the automobile costing model.
@@ -37,23 +37,23 @@ The last bit of information that we're going to give the API is that we want the
 Our json input should end up looking something like this:
 
 ``` javascript
-{
-  locations: [
-    {
-      lat:...,
-      lon:...,
-      type: 'break'
-    },{
-      lat:...,
-      lon:...,
-      type: 'break'
+  {
+    locations: [
+      {
+        lat:...,
+        lon:...,
+        type: 'break'
+      },{
+        lat:...,
+        lon:...,
+        type: 'break'
+      }
+    ],
+    costing: 'auto',
+    directions_options:{
+      units: 'miles'
     }
-  ],
-  costing: 'auto',
-  directions_options:{
-    units: 'miles'
   }
-}
 ```
 
 ### Send the query
@@ -112,4 +112,4 @@ This let's us check to see if we have a feature selected for `from` and `to` and
 
 Now that we can query the Mobility API, how about we show the user what the resulting route looks like on the map!
 
-Let's go to [Lesson 6]() and get mapping.
+Let's go to [Lesson 6](/06-Display-route.md) and get mapping.

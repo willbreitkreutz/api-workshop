@@ -15,7 +15,7 @@ To get started you will want to fork this repository into one of your own under 
 
 Now you could download all of the code for the project to your local machine, make the edits and push it back to GitHub for deployment, that would work. We're going to short cut that workflow and keep all of our work in the browser!
 
-[Prose.io](prose.io) is an awesome little tool that lets you access and edit files hosted in GitHub. It's designed mainly for editing blog posts in Markdown, but works just as well for doing quick edits in your code. I wouldn't use it for building a large application, but for the app we're putting together it will work beautifully. You will need to authorize the Prose app using your GitHub account, but after that access is pretty seamless.
+[Prose.io](http://prose.io/) is an awesome little tool that lets you access and edit files hosted in GitHub. It's designed mainly for editing blog posts in Markdown, but works just as well for doing quick edits in your code. I wouldn't use it for building a large application, but for the app we're putting together it will work beautifully. You will need to authorize the Prose app using your GitHub account, but after that access is pretty seamless.
 
 As you follow along through this workshop you should do your coding in the 00-workspace folder, it's a copy of the 01-start-here folder and that way you have your own playground to develop in without losing any of the pre-staged code.
 

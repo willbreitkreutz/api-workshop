@@ -76,4 +76,4 @@ Now let's create an icon container, grab the icon svg and add it to the containe
 
 Now we see icons that correspond with the verbal instructions in the maneuver list!
 
-Next in [lesson 9]() lets add some interaction to the list so that we can see where on the map each maneuver takes place, and let our user click on a direction to zoom to that location.
+Next in [lesson 9](/09-Add-interactions.md) lets add some interaction to the list so that we can see where on the map each maneuver takes place, and let our user click on a direction to zoom to that location.
