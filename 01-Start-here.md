@@ -48,7 +48,7 @@ Astute readers will also notice the `util.js` and `app.css` files that are impor
 
 ## Test out the app
 
-If you open your browser to the github pages __https://<your user name here>.github.io/api-workshop__ for your repo you should see a simple page listing out each of the lessons as well as your workspace as links.  Each of these links should display the map as it should look at the beginning of each of the numbered lessons.
+If you open your browser to the github pages https://__your user name here__.github.io/api-workshop for your repo you should see a simple page listing out each of the lessons as well as your workspace as links.  Each of these links should display the map as it should look at the beginning of each of the numbered lessons.
 
 Ok, if everything looks good so far, let's start thinking about how we're going to implement a route finding tool! [Lesson 02](/02-Explore-an-api.md)
 
