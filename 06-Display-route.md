@@ -139,4 +139,4 @@ To do this let's add the `app.routeLayer` to the `app` object up toward the top 
 
 Ok, now if we test it out, we should be able to query a route using two locations and have it draw on the map!
 
-What about those turn-by-turn directions that they send us, let's add those so that the user can see all the turns they'll have to make to get from A to B. Time to go to [lesson 7](/07-Display-turn-by-turn).
+What about those turn-by-turn directions that they send us, let's add those so that the user can see all the turns they'll have to make to get from A to B. Time to go to [lesson 7](/07-Display-turn-by-turn.md).

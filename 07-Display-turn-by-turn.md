@@ -2,7 +2,7 @@
 
 If we look closely at the legs array that we get back, each leg has an array of `maneuvers` that one has to follow to get from point A to point B.  Each of the maneuvers contains a lot of information about what the user should do at a given place on the route.  W're going to concentrate on a few of the pieces of information, the `type`, `instruction`, `verbal_post_transition_instruction` the `begin_shape_index` and the `end_shape_index`.  These are all the information that the GPS device we use when driving around tells us where to go, so we're going to give our user the same information, but in text form.
 
-As a first step, we're going to store the directions we get from the API on our `app` object so we can refer to them later.  In our `queryMobility` methods `success` callback, let's attach the data object to `app.directions`:
+As a first step, we're going to store the directions we get from the API on our `app` object so we can refer to them later.  In our `queryMobility` method's `success` callback, let's attach the `data.trip` object to `app.trip`:
 
 ``` javascript
   success: function(data, status, req){
@@ -46,7 +46,7 @@ In `index.html` let's add a `<ul>` for our directions at the bottom of our sideb
           </span>
         </div>
         <ul id="results-list" class="results-list hidden"></ul>
-        <ul id="directions-list" class="directions-list styled-scrollbar hidden"></ul>
+        **<ul id="directions-list" class="directions-list styled-scrollbar hidden"></ul>**
       </div>
       <script src="./app.js"></script>
     </body>
