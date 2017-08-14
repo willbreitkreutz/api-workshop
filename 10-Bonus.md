@@ -87,17 +87,21 @@ We've been able to get our route, and turn-by-turn directions, how about we show
 
 The summary object that gets returned when we query the Mobility API has all the information we need to display this at the top of the turn-by-turn list, including the total time in seconds and the total distance (in the units that we requested, in this case miles).
 
-If we check out the 
+The first thing we need is a place for the summary information to go.  Let's add a span above the directions list that can contain our summary, but make it hidden by default so that we only show it when we have summary info available.  Add the following `span` to the `index.html` file below the inputs:
 
 ``` html
   <span class="summary-info hidden"></span>
 ```
+
+We also need to make an adjustment to the css so that we move our directions list down just a bit so we have room for the summary info span.  We can add the following class directive to the bottom of our `app.css` file.  This is where the "cascading" aspect of Cascading Style Sheets (CSS) comes in handy.  We can overwrite the top attribute of the `.directions-list` class by declaring it again at the bottom of the file, this way it takes precedence over any previously defined directives:
 
 ``` css
   .directions-list {
     top: 114px;
   }
 ```
+
+We need to make a few changes to our `renderDirectionsList` method on `app`, I've added comments above each of the lines we need to add in the code below:
 
 ``` javascript
   renderDirectionsList: function(err){
@@ -158,6 +162,8 @@ If we check out the
     }
   },
 ```
+
+Now we know how far our trip is and how long it's goint to take!
 
 ### Keep Going!
 
