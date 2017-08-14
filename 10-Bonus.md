@@ -163,7 +163,7 @@ We need to make a few changes to our `renderDirectionsList` method on `app`, I'v
   },
 ```
 
-Now we know how far our trip is and how long it's goint to take!
+Now we know how far our trip is and how long it's going to take!
 
 ### Keep Going!
 
