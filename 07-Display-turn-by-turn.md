@@ -46,7 +46,10 @@ In `index.html` let's add a `<ul>` for our directions at the bottom of our sideb
           </span>
         </div>
         <ul id="results-list" class="results-list hidden"></ul>
-        **<ul id="directions-list" class="directions-list styled-scrollbar hidden"></ul>**
+
+        <!-- add directions list here to hold our turn-by-turn directions -->
+        <ul id="directions-list" class="directions-list styled-scrollbar hidden"></ul>
+
       </div>
       <script src="./app.js"></script>
     </body>
