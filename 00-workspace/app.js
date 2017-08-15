@@ -28,6 +28,10 @@ var app = {
 	mapzenKey: 'mapzen-CpAANqF',
   	activeSearch: 'from',
     options: [],
+    selection: {
+    	from: {},
+        to: {}
+    },
   
   	typeAhead: function(e){
     	var el = e.target;
@@ -60,6 +64,9 @@ var app = {
       
       	var results = app.options.map(function(feature){
         	var li = $('<li class="results-list-item">' + feature.properties.label + '</li>');
+            li.on('click', function(){
+            	app.selectItem(feature);
+            })
           	return li;
         })
         
@@ -70,6 +77,18 @@ var app = {
         }else{
           resultsList.addClass('hidden');
         }
+    },
+  
+  	selectItem: function(feature){
+     	 app.selection[app.activeSearch] = feature;
+    	 var elId = '#search-' + app.activeSearch + '-input';
+      	$(elId).val(feature.properties.label);
+      	app.clearList();
+    },
+  
+  	clearList: function(){
+    	app.options = [];
+      	app.renderResultsList();
     }
 }
 
