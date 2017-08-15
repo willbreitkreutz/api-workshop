@@ -32,6 +32,20 @@ var app = {
     	from: {},
         to: {}
     },
+  	routeLayer: new ol.layer.Vector({
+    	map: map,
+      	opacity: 0.6,
+      	visible: true,
+      	style: new ol.style.Style({
+        	stroke: new ol.style.Stroke({
+            	color: '#2196F3',
+              	width: 5
+            })
+        }),
+      	source: new ol.source.Vector({
+        	features: []
+        })
+    })
   
   	typeAhead: function(e){
     	var el = e.target;
@@ -151,22 +165,8 @@ var app = {
         	app.routeLayer.getSource().getExtent(),
             map.getSize()
         )
-    },
+    }
   
-  	routeLayer: new ol.layer.Vector({
-    	map: map,
-      	opacity: 0.6,
-      	visible: true,
-      	style: new ol.style.Style({
-        	stroke: new ol.style.Stroke({
-            	color: '#2196F3',
-              	width: 5
-            })
-        }),
-      	source: new ol.source.Vector({
-        	features: []
-        })
-    })
 }
 
 $('#search-from-input').on('keyup', {input:'from'}, app.typeAhead);
