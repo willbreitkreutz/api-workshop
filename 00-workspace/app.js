@@ -88,9 +88,7 @@ var app = {
       	app.clearList();
       
       	if(app.selection.from.hasOwnProperty('geometry') && app.selection.to.hasOwnProperty('geometry')){
-        	app.queryMobility(function(err, data){
-            	console.log(err, data);
-            })
+        	app.queryMobility(app.displayRoute);
         }
     },
   
@@ -125,13 +123,50 @@ var app = {
       	$.ajax({
         	url: 'https://valhalla.mapzen.com/route?json=' + JSON.stringify(json) + '&api_key=' + app.mapzenKey,
           	success: function(data, status, req){
-            	callback(null, data);	
+              app.trip = data.trip;
+              var coords = polyline.decode(data.trip.legs[0].shape);
+              callback(null, coords);	
             },
           	error: function(req, status, err){
             	callback(err);
             }
         })
-    }
+    },
+  
+  	displayRoute: function(err, coords){
+    	if(err) return console.log(err);
+      	var route = {
+        	type: 'Feature',
+          	geometry: {
+            	type: 'LineString',
+              	coordinates: coords
+            }
+        };
+      
+      	app.routeLayer.setSource( new ol.source.Vector({
+        	features: (new ol.format.GeoJSON({featureProjection: mapProjection})).readFeatures(route);
+        }));
+      
+      	map.getView().fit(
+        	app.routeLayer.getSource().getExtent(),
+            map.getSize()
+        )
+    },
+  
+  	routeLayer: new ol.layer.Vector({
+    	map: map,
+      	opacity: 0.6,
+      	visible: true,
+      	style: new ol.style.Style({
+        	stroke: new ol.style.Stroke({
+            	color: '#2196F3',
+              	width: 5
+            })
+        }),
+      	source: new ol.source.Vector({
+        	features: []
+        })
+    })
 }
 
 $('#search-from-input').on('keyup', {input:'from'}, app.typeAhead);
