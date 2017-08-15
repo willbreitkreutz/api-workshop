@@ -108,7 +108,10 @@ var app = {
   
   	clearList: function(){
     	app.options = [];
+      	app.trip = {};
       	app.renderResultsList();
+      	app.renderDirectionsList();
+      	app.routeLayer.setSource(null);
     },
   
   	clearSearch: function(e){
