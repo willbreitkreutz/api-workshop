@@ -172,7 +172,44 @@ var app = {
         map.getSize()
       )      
 
-      //app.renderDirectionsList();
+      app.renderDirectionsList();
+    }
+  },
+  
+  renderDirectionsList: function(err){
+  	var sidebar = $('#sidebar');
+    var directionsList = $('#directions-list');
+    
+    directionsList.empty();
+    
+    if(app.trip && app.trip.legs){
+     	var directions = app.trip.legs[0].maneuvers.map(function(man){
+        	
+          	var li = $('<li class="directions-list-item"></li>');
+          	var instructionContainer = $('<div class="directions-list-instruction-container"></div>');
+          
+          	var instruction = $('<div class="directions-list-item-direction">' + man.instruction + '</div>');
+          
+          	instructionContainer.append(instruction);
+          
+          	if(man.hasOwnProperty('verbal_post_instruction')){
+            	var then = $('<div class="directions-then">Then ' + man.verbal_post_instruction + '</div>');
+                instructionContainer.append(then);
+            }
+          
+          	li.append(instructionContainer);
+          
+          	return li;
+        }) 
+        
+        directionsList.append(directions);
+      
+      	directionsList.removeClass('hidden');
+      
+      	sidebar.addClass('sidebar-expanded');
+    }else{
+    	directionsList.addClass('hidden');
+      	sidebar.removeClass('sidebar-expanded');
     }
   }
   
