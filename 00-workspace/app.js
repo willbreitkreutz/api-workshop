@@ -158,13 +158,13 @@ var app = {
         };
       
       	app.routeLayer.setSource( new ol.source.Vector({
-        	features: (new ol.format.GeoJSON({featureProjection: mapProjection})).readFeatures(route)
-        }));
-      
-      	map.getView().fit(
-        	app.routeLayer.getSource().getExtent(),
-            map.getSize()
-        )
+        features: (new ol.format.GeoJSON({featureProjection: mapProjection})).readFeatures(route)
+      }))
+
+      map.getView().fit(
+        app.routeLayer.getSource().getExtent(),
+        map.getSize()
+      )  
     }
   
 }
