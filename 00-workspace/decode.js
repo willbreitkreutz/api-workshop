@@ -1,7 +1,8 @@
 //https://mapzen.com/documentation/mobility/decoding/
 // This is adapted from the implementation in Project-OSRM
 // https://github.com/DennisOSRM/Project-OSRM-Web/blob/master/WebContent/routing/OSRM.RoutingGeometry.js
-polyline.decode = function(str, precision) {
+window.polyline = {};
+window.polyline.decode = function(str, precision) {
     var index = 0,
         lat = 0,
         lng = 0,
