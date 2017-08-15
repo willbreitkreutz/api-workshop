@@ -31,8 +31,22 @@ var app = {
   	typeAhead: function(e){
     	var el = e.target;
         var val = el.value;
-        console.log(val);
-    }
+        app.queryAutocomplete(val, function(err, data){
+        console.log(data);
+        }
+    },
+  
+  	queryAutocomplete: throttle(function(text, callback){
+      $.ajax({
+        	url:'https://search.mapzen.com/v1/autocomplete?text=' + text + '&api_key=' + app.mapzenKey,
+        success: function(data, status, req){
+        	callback(null, data);
+        },
+        error: function(req, status, err){
+        	callback(err);
+        }
+      })
+    }, 150)
 }
 
 $('#search-from-input').on('keyup', {input:'from'}, app.typeAhead);
