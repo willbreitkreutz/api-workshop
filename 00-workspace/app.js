@@ -144,7 +144,7 @@ var app = {
         };
       
       	app.routeLayer.setSource( new ol.source.Vector({
-        	features: (new ol.format.GeoJSON({featureProjection: mapProjection})).readFeatures(route);
+        	features: (new ol.format.GeoJSON({featureProjection: mapProjection})).readFeatures(route)
         }));
       
       	map.getView().fit(
