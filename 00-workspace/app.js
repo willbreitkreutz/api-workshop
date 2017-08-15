@@ -148,24 +148,31 @@ var app = {
     },
   
   	displayRoute: function(err, coords){
-    	if(err) return console.log(err);
-      	var route = {
-        	type: 'Feature',
-          	geometry: {
-            	type: 'LineString',
-              	coordinates: coords
-            }
-        };
-      
-      	app.routeLayer.setSource( new ol.source.Vector({
+    if(err){
+      console.log(err);
+    }else{
+      app.coords = coords;
+
+      var route = {
+        type: 'Feature',
+        geometry: {
+          type: 'LineString',
+          coordinates: coords
+        }
+      }
+
+      app.routeLayer.setSource( new ol.source.Vector({
         features: (new ol.format.GeoJSON({featureProjection: mapProjection})).readFeatures(route)
       }))
 
       map.getView().fit(
         app.routeLayer.getSource().getExtent(),
         map.getSize()
-      )  
+      )      
+
+      //app.renderDirectionsList();
     }
+  }
   
 }
 
