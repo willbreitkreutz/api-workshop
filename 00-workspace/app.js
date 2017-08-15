@@ -27,6 +27,7 @@ var map = new ol.Map({
 var app = {
 	mapzenKey: 'mapzen-CpAANqF',
   	activeSearch: 'from',
+    options: [],
   
   	typeAhead: function(e){
     	var el = e.target;
@@ -34,7 +35,9 @@ var app = {
         
       	if(val.length > 2){
           app.queryAutocomplete(val, function(err, data){
-              console.log(data);
+              if(err) return console.log(err);
+              if(data.features) app.options = data.features;
+              app.renderResultsList();
           })
         }
     },
@@ -49,7 +52,25 @@ var app = {
         	callback(err);
         }
       })
-    }, 150)
+    }, 150),
+  
+  	renderResultsList: function(){
+    	var resultsList = $('#results-list');
+        resultsList.empty();
+      
+      	var results = app.options.map(function(feature){
+        	var li = $('<li class="results-list-item">' + feature.properties.label + '</li>');
+          	return li;
+        })
+        
+        resultsList.append(results);
+      
+      	if(app.options.length > 0){
+          resultsList.removeClass('hidden');
+        }else{
+          resultsList.addClass('hidden');
+        }
+    }
 }
 
 $('#search-from-input').on('keyup', {input:'from'}, app.typeAhead);
