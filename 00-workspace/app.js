@@ -118,34 +118,36 @@ var app = {
     },
   
   	queryMobility: function(callback){
-    	var json = {
-        	locations: [{
-            	lat: app.selection.from.geometry.coordinates[1],
-              	lon: app.selection.from.geometry.coordinates[0],
-              	type: 'break'
-            },{
-            	lat: app.selection.to.geometry.coordinates[1],
-              	lon: app.selection.to.geometry.coordinates[0],
-              	type: 'break'
-            }],
-          	costing: 'auto',
-          	directions_options: {
-            	units: 'miles'
-            }
-        };
-      	
-      	$.ajax({
-        	url: 'https://valhalla.mapzen.com/route?json=' + JSON.stringify(json) + '&api_key=' + app.mapzenKey,
-          	success: function(data, status, req){
-              app.trip = data.trip;
-              var coords = polyline.decode(data.trip.legs[0].shape);
-              callback(null, coords);	
-            },
-          	error: function(req, status, err){
-            	callback(err);
-            }
-        })
-    },
+    var json = {
+      locations:[
+        {
+          lat:app.selection.from.geometry.coordinates[1],
+          lon:app.selection.from.geometry.coordinates[0],
+          type:'break'
+        },
+        {
+          lat:app.selection.to.geometry.coordinates[1],
+          lon:app.selection.to.geometry.coordinates[0],
+          type:'break'
+        }
+      ],
+      costing:'auto',
+      directions_options:{
+        units:'miles'
+      }
+    }
+    $.ajax({
+      url: 'https://valhalla.mapzen.com/route?json=' + JSON.stringify(json) + '&api_key=' + app.mapzenKey,
+      success: function(data, status, req){
+        app.trip = data.trip;
+        var coords = polyline.decode(data.trip.legs[0].shape);
+        callback(null, coords);
+      },
+      error: function(req, status, err){
+        callback(err);
+      }
+    })
+  },
   
   	displayRoute: function(err, coords){
     if(err){
