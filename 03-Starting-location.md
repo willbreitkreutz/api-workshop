@@ -95,6 +95,8 @@ We can add a method to our app object to send the request to mapzen by adding an
 
 We add the throttle function to make sure that we don't send too many requests since if the network hiccups our responses can get out of sync with our requests and we start showing our users bad results.  See [here](https://mapzen.com/documentation/search/autocomplete/#user-experience-guidelines) for Mapzen's not on throttling for more info.
 
+> Since we read the documentation for the autocomplete API, what are some changes we could make to boost the relavence of the results we're getting from the API?
+
 In order to actually call the `queryAutocomplete` function, we should add a call inside the `typeAhead` function.  We can pass the text that the user is typing as well as a callback function to handle the results when they come back, in this case let's just log them to the console.
 
 ``` javascript
