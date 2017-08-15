@@ -1,8 +1,18 @@
+# What exactly is an API?
+
+API stands for Application Programming Interface and has a pretty good definition when we look it up on [Wikipedia](https://en.wikipedia.org/wiki/Application_programming_interface):
+
+> In computer programming, an Application Programming Interface (API) is a set of subroutine definitions, protocols, and tools for building application software. In general terms, it is a set of clearly defined methods of communication between various software components.
+
+That last sentence is the heart of what an API is, I think of it as a contract between one piece of software (or firmware) and another describing how they can communicate between each other.  There are a number of types of API, describing how to communicate with hardware, a software library or web services.  That last one, the Web API will be what we're concentrating on in this workshop.
+
 # Exploring an API, the first step
 
 To use a 3rd party API in your tool you should first explore the API and learn all you can about how it works.  You need to understand what it expects from you and what to expect to get in return.
 
 Basically, it's time to read the docs.
+
+[Mapzen API Documentation](https://mapzen.com/documentation/)
 
 [Mapzen API Explorer](https://mapzen.com/search/explorer/)
 
