@@ -45,7 +45,7 @@ var app = {
       	source: new ol.source.Vector({
         	features: []
         })
-    })
+    }),
   
   	typeAhead: function(e){
     	var el = e.target;
