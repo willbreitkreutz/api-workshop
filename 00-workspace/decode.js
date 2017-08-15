@@ -1,4 +1,3 @@
-//https://mapzen.com/documentation/mobility/decoding/
 // This is adapted from the implementation in Project-OSRM
 // https://github.com/DennisOSRM/Project-OSRM-Web/blob/master/WebContent/routing/OSRM.RoutingGeometry.js
 window.polyline = {};
@@ -45,7 +44,7 @@ window.polyline.decode = function(str, precision) {
         lat += latitude_change;
         lng += longitude_change;
 
-        coordinates.push([lat / factor, lng / factor]);
+        coordinates.push([lng / factor, lat / factor]);
     }
 
     return coordinates;
